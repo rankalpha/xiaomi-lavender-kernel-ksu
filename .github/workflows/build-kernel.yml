@@ -42,6 +42,7 @@ jobs:
       run: |
         mkdir clang
         git clone https://github.com/kdrag0n/proton-clang.git -b master --depth=1 clang
+        
     - name: Download mkbootimg tools
       if: env.MAKE_BOOT_IMAGE == 'true'
       run: |
@@ -55,6 +56,7 @@ jobs:
       run: |
         cd $GITHUB_WORKSPACE/kernel_workspace
         git clone ${{ env.KERNEL_SOURCE }} -b ${{ env.KERNEL_SOURCE_BRANCH }} android-kernel --depth=1
+        
     - name: Kernel patch
       if: env.USE_KERNELSU == 'true'
       run: |
@@ -62,6 +64,7 @@ jobs:
         cd android-kernel
         # git apply $GITHUB_WORKSPACE/KernelSU/$KERNEL_VERSION/KernelSU.patch
         bash $GITHUB_WORKSPACE/.utils/patch.sh
+        
     - name: Download source boot image
       if: env.MAKE_BOOT_IMAGE == 'true'
       run: |
